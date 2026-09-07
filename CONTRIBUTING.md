@@ -17,3 +17,29 @@ npm run build
 ```
 
 Issue 请提供可复现步骤、系统版本和已经脱敏的错误信息，不要附上完整 cURL 或请求头。
+
+## 从源码运行
+
+需要 Python 3.11–3.13、Node.js 22+、npm 和 Google Chrome。在 Windows PowerShell 中执行：
+
+```powershell
+cd DataAutomationTool-source
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements-dev.txt
+cd web_workbench\frontend
+npm ci
+npm run dev
+```
+
+另开一个 PowerShell，在同一虚拟环境与前端目录中运行 `npm run electron:dev`。
+
+## 构建 Windows 安装包
+
+在 Windows 上安装 Python 3.12 x64、Node.js 22+，并在前端目录执行：
+
+```powershell
+npm run dist:win
+```
+
+安装包输出到前端目录的 `release/`，构建日志位于 `.build-logs/`。这些本地产物不提交到源码仓库。发布时同时提供 `LICENSE`、`DISCLAIMER.md` 和 SHA-256 校验文件。

@@ -1,72 +1,36 @@
 # 资料自动化工具
 
-这是一个在 Windows 本机运行的资料下载工具，界面按 Step 0 至 Step 3 组织：
+在 Windows 本机运行的资料下载工具，支持柚子数据、麦子拓展数据和柚子关键词下载。
 
-| 步骤 | 功能 | 主要输入 | 输出 |
-| --- | --- | --- | --- |
-| Step 0 | 建立项目 | 任务名称 + 用户选择保存位置 | 任务目录 + `Step0_ASIN_Input.xlsx` |
-| Step 1 | 柚子数据下载 | 国家 + ASIN 的 CSV/XLSX | 网页下载的 XLSX 和结果清单 |
-| Step 2 | 麦子拓展数据下载 | ASIN 输入表 + cURL | 完整响应 JSONL |
-| Step 3 | 柚子关键词下载 | 关键词 TXT/CSV/XLSX + cURL | 完整响应 JSONL |
+## 下载安装
 
-## 使用方式
+前往 [最新版本下载页](https://github.com/nope-cypto/DataAutomationTool/releases/latest)，下载 `DataAutomationTool-Setup-<版本>-x64.exe` 后安装。
 
-1. 在 Step 0 输入任务名，点击“新建任务并选择位置”，由用户自行选择保存目录。
-2. 在同一个 Step 0 区块打开 ASIN 输入表，并按界面示例填写。
-3. 依序执行 Step 1、Step 2 和 Step 3，运行状态统一显示在页面顶部。
+- 适用平台：Windows x64；请预先安装 Google Chrome。
+- 直接使用安装包不需要安装 Python 或 Node.js。
+- 下载页提供 SHA-256 校验文件、免责声明及许可证。当前 v1.1.5 安装包未附代码签名，Windows 可能显示未知发布者提示；请核对来源及校验值，不要关闭系统安全防护。
 
-> cURL 通常包含 Cookie 或授权资讯。请勿分享或提交到 Git，并仅下载你有权访问的数据。
+## 使用前请阅读
 
-## 从源码运行
+**本项目是独立的第三方工具，与所涉及的平台不存在官方隶属、授权或背书关系。只能在获得相应权限并遵守适用法律及平台规则的前提下使用；开源许可不代表取得第三方数据或接口的使用权。**
 
-需要 Python 3.11–3.13、Node.js 22+、npm 和 Google Chrome。
+**软件按现状提供，不保证持续可用、数据准确完整或账号不受限制。在适用法律允许的范围内，作者和贡献者不提供担保，并依 MIT 许可证限制责任；法律不得排除或限制的责任不受影响。**
 
-```powershell
-cd DataAutomationTool-source
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements-dev.txt
+完整内容见 [免责声明](DISCLAIMER.md) 和 [安全说明](SECURITY.md)。cURL 可能包含 Cookie 或访问令牌，请勿分享或上传。
 
-cd web_workbench\frontend
-npm ci
-npm run dev
-```
+## 使用步骤
 
-另开一个 PowerShell，在相同虚拟环境中运行桌面程序：
+| 步骤 | 操作 | 结果 |
+| --- | --- | --- |
+| Step 0 | 输入任务名，选择保存位置 | 创建任务目录与 ASIN 输入表 |
+| Step 1 | 选择国家并导入 ASIN 的 CSV/XLSX | 下载柚子数据 XLSX 和结果清单 |
+| Step 2 | 提供 ASIN 输入表及已授权请求的 cURL | 保存麦子拓展原始响应 JSONL |
+| Step 3 | 提供关键词 TXT/CSV/XLSX 及已授权请求的 cURL | 保存柚子关键词原始响应 JSONL |
 
-```powershell
-cd DataAutomationTool-source\web_workbench\frontend
-npm run electron:dev
-```
+任务输出保存在所选目录中。请先用少量数据验证结果，并备份重要文件。
 
-## 测试
+## 开发与反馈
 
-```powershell
-cd DataAutomationTool-source
-python -m pytest
+源码运行、测试和 Windows 打包步骤见 [贡献指南](CONTRIBUTING.md)。普通问题可提交 [Issue](https://github.com/nope-cypto/DataAutomationTool/issues)，请先移除凭据和业务数据；漏洞报告请按 [安全说明](SECURITY.md) 操作。
 
-cd web_workbench\frontend
-npm ci
-npm test
-npm run build
-```
-
-## 构建 Windows 安装包
-
-打包固定使用 Python 3.12 x64。在 Windows PowerShell 中执行：
-
-```powershell
-cd DataAutomationTool-source\web_workbench\frontend
-npm run dist:win
-```
-
-构建日志保存在 `web_workbench/frontend/.build-logs/`，完成后安装包位于 `web_workbench/frontend/release/`，档名格式为 `DataAutomationTool-Setup-<version>-x64.exe`。
-
-## 技术结构
-
-- Electron：本地窗口、档案选择、调试 Chrome 与 Worker 生命周期。
-- React/Vite：Step 0–3 操作界面。
-- Python Worker：仅监听 `127.0.0.1:18137`，使用每次启动随机产生的会话密钥。
-- Playwright：通过 Chrome DevTools Protocol 连接用户启动的调试 Chrome。
-
-源码采用 [MIT License](LICENSE)。请同时阅读 [贡献指南](CONTRIBUTING.md) 和 [安全说明](SECURITY.md)。
+本项目采用 [MIT License](LICENSE)。
