@@ -1,0 +1,69 @@
+name: Test and build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: DataAutomationTool-source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: "x64"
+          cache: pip
+          cache-dependency-path: |
+            DataAutomationTool-source/requirements.txt
+            DataAutomationTool-source/requirements-dev.txt
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: DataAutomationTool-source/web_workbench/frontend/package-lock.json
+      - run: npm ci
+        working-directory: DataAutomationTool-source/web_workbench/frontend
+      - run: npm test
+        working-directory: DataAutomationTool-source/web_workbench/frontend
+      - run: npm run build
+        working-directory: DataAutomationTool-source/web_workbench/frontend
+
+  windows-installer:
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    needs: test
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: DataAutomationTool-source
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: "x64"
+          cache: pip
+          cache-dependency-path: |
+            DataAutomationTool-source/requirements.txt
+            DataAutomationTool-source/requirements-packaging.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: DataAutomationTool-source/web_workbench/frontend/package-lock.json
+      - run: pip install -r requirements-packaging.txt
+      - run: npm run dist:win
+        working-directory: DataAutomationTool-source/web_workbench/frontend
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DataAutomationTool-Windows
+          path: DataAutomationTool-source/web_workbench/frontend/release/DataAutomationTool-Setup-*.exe
+          if-no-files-found: error

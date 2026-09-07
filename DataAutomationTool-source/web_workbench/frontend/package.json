@@ -1,0 +1,74 @@
+{
+  "name": "data-automation-tool",
+  "private": true,
+  "version": "1.1.5",
+  "description": "Local data automation and download tool.",
+  "author": "资料自动化工具 contributors",
+  "license": "MIT",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 18138",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 18138",
+    "test": "node scripts/test-user-flow.mjs && node scripts/test-open-source-boundary.mjs && node scripts/test-runtime-paths.mjs && node scripts/test-build-win-package.mjs",
+    "electron:dev": "electron .",
+    "electron:local": "npm run build && electron . --built",
+    "dist:win": "node scripts/build-win-package.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.4",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "electron": "^43.1.1",
+    "electron-builder": "^26.0.12",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "build": {
+    "appId": "io.github.dataautomationtool.desktop",
+    "productName": "资料自动化工具",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../worker/dist",
+        "to": "worker"
+      }
+    ],
+    "win": {
+      "executableName": "DataAutomationTool",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "DataAutomationTool-Setup-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowElevation": false,
+      "shortcutName": "资料自动化工具",
+      "uninstallDisplayName": "资料自动化工具"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 900px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(219, 234, 254, 0.8), transparent 32rem),
+    #f4f7fb;
+  color: #172033;
+  font-family: "Microsoft YaHei UI", "Inter", "Segoe UI", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.button-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.file-chip {
+  min-height: 2.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  background: #f1f5f9;
+  padding: 0.55rem 0.75rem;
+  color: #64748b;
+  font-size: 0.75rem;
+}
+
+.instruction-list {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: #475569;
+  font-size: 0.875rem;
+  line-height: 1.75;
+}
