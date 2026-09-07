@@ -1,36 +1,36 @@
-# 资料自动化工具
+# 資料自動化工具
 
-在 Windows 本机运行的资料下载工具，支持柚子数据、麦子拓展数据和柚子关键词下载。
+在 Windows 本機執行的資料下載工具，支援柚子資料、麥子拓展資料和柚子關鍵詞下載。
 
-## 下载安装
+## 下載安裝
 
-前往 [最新版本下载页](https://github.com/nope-cypto/DataAutomationTool/releases/latest)，下载 `DataAutomationTool-Setup-<版本>-x64.exe` 后安装。
+前往 [最新版本下載頁](https://github.com/nope-cypto/DataAutomationTool/releases/latest)，下載 `DataAutomationTool-Setup-<版本>-x64.exe` 後安裝。
 
-- 适用平台：Windows x64；请预先安装 Google Chrome。
-- 直接使用安装包不需要安装 Python 或 Node.js。
-- 下载页提供 SHA-256 校验文件、免责声明及许可证。当前 v1.1.5 安装包未附代码签名，Windows 可能显示未知发布者提示；请核对来源及校验值，不要关闭系统安全防护。
+- 適用平台：Windows x64；請預先安裝 Google Chrome。
+- 直接使用安裝包不需要安裝 Python 或 Node.js。
+- 下載頁提供 SHA-256 校驗檔案、免責聲明及授權條款。目前 v1.1.5 安裝包未附程式碼簽章，Windows 可能顯示未知發布者提示；請核對來源及校驗值，不要關閉系統安全防護。
 
-## 使用前请阅读
+## 使用前請閱讀
 
-**本项目是独立的第三方工具，与所涉及的平台不存在官方隶属、授权或背书关系。只能在获得相应权限并遵守适用法律及平台规则的前提下使用；开源许可不代表取得第三方数据或接口的使用权。**
+**本專案是獨立的第三方工具，與所涉及的平台不存在官方隸屬、授權或背書關係。只能在獲得相應權限並遵守適用法律及平台規則的前提下使用；開源許可不代表取得第三方資料或介面的使用權。**
 
-**软件按现状提供，不保证持续可用、数据准确完整或账号不受限制。在适用法律允许的范围内，作者和贡献者不提供担保，并依 MIT 许可证限制责任；法律不得排除或限制的责任不受影响。**
+**軟體按現狀提供，不保證持續可用、資料準確完整或帳號不受限制。在適用法律允許的範圍內，作者和貢獻者不提供擔保，並依 MIT 授權條款限制責任；法律不得排除或限制的責任不受影響。**
 
-完整内容见 [免责声明](DISCLAIMER.md) 和 [安全说明](SECURITY.md)。cURL 可能包含 Cookie 或访问令牌，请勿分享或上传。
+完整內容見 [免責聲明](DISCLAIMER.md) 和 [安全說明](SECURITY.md)。cURL 可能包含 Cookie 或存取權杖，請勿分享或上傳。
 
-## 使用步骤
+## 使用步驟
 
-| 步骤 | 操作 | 结果 |
+| 步驟 | 操作 | 結果 |
 | --- | --- | --- |
-| Step 0 | 输入任务名，选择保存位置 | 创建任务目录与 ASIN 输入表 |
-| Step 1 | 选择国家并导入 ASIN 的 CSV/XLSX | 下载柚子数据 XLSX 和结果清单 |
-| Step 2 | 提供 ASIN 输入表及已授权请求的 cURL | 保存麦子拓展原始响应 JSONL |
-| Step 3 | 提供关键词 TXT/CSV/XLSX 及已授权请求的 cURL | 保存柚子关键词原始响应 JSONL |
+| Step 0 | 輸入任務名，選擇儲存位置 | 建立任務目錄與 ASIN 輸入表 |
+| Step 1 | 選擇國家並匯入 ASIN 的 CSV/XLSX | 下載柚子資料 XLSX 和結果清單 |
+| Step 2 | 提供 ASIN 輸入表及已授權請求的 cURL | 儲存麥子拓展原始回應 JSONL |
+| Step 3 | 提供關鍵詞 TXT/CSV/XLSX 及已授權請求的 cURL | 儲存柚子關鍵詞原始回應 JSONL |
 
-任务输出保存在所选目录中。请先用少量数据验证结果，并备份重要文件。
+任務輸出儲存在所選目錄中。請先用少量資料驗證結果，並備份重要檔案。
 
-## 开发与反馈
+## 開發與回饋
 
-源码运行、测试和 Windows 打包步骤见 [贡献指南](CONTRIBUTING.md)。普通问题可提交 [Issue](https://github.com/nope-cypto/DataAutomationTool/issues)，请先移除凭据和业务数据；漏洞报告请按 [安全说明](SECURITY.md) 操作。
+原始碼執行、測試和 Windows 打包步驟見 [貢獻指南](CONTRIBUTING.md)。普通問題可提交 [問題回報](https://github.com/nope-cypto/DataAutomationTool/issues)，請先移除憑據和業務資料；漏洞報告請按 [安全說明](SECURITY.md) 操作。
 
-本项目采用 [MIT License](LICENSE)。
+本專案採用 [MIT 授權條款](LICENSE)，另提供 [繁體中文參考譯文](LICENSE.zh-TW.md)。

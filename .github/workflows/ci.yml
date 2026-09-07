@@ -1,4 +1,4 @@
-name: Test and build
+name: 測試與建置
 
 on:
   push:

@@ -1,15 +1,15 @@
-# 安全说明
+# 安全說明
 
-## 敏感资料
+## 敏感資料
 
-从浏览器复制的 cURL 很可能包含 Cookie、Authorization header 或其他短期凭据。程序将它保存到当前任务目录的 `Step2_Request.txt` 或 `Step3_Request.txt`。执行任务时会向对应第三方服务发送必要的认证信息；任何能读取任务目录的人都可能取得其中的凭据，本地同步或备份软件也可能复制这些文件。
+從瀏覽器複製的 cURL 很可能包含 Cookie、Authorization header 或其他短期憑據。程式將它儲存到目前任務目錄的 `Step2_Request.txt` 或 `Step3_Request.txt`。執行任務時會向對應第三方服務傳送必要的認證資訊；任何能讀取任務目錄的人都可能取得其中的憑據，本地同步或備份軟體也可能複製這些檔案。
 
-- 不要将任务目录、cURL、浏览器调试目录或原始输出提交到 GitHub。
-- 使用完成后可删除请求文件内容，并在第三方网站退出会话或撤销相应凭据。
-- 分享日志或截图前，应移除请求头、Cookie、账号信息及业务数据。
+- 不要將任務目錄、cURL、瀏覽器除錯目錄或原始輸出提交到 GitHub。
+- 使用完成後可刪除請求檔案內容，並在第三方網站退出會話或撤銷相應憑據。
+- 分享日誌或截圖前，應移除請求頭、Cookie、帳號資訊及業務資料。
 
-## 报告漏洞
+## 報告漏洞
 
-请通过 [GitHub 私密安全报告](https://github.com/nope-cypto/DataAutomationTool/security/advisories/new) 提交漏洞，不要在公开 Issue 中附上可用凭据或真实用户数据。报告应包含受影响版本、复现方式、影响和建议修复方向。
+請透過 [GitHub 私密安全報告](https://github.com/nope-cypto/DataAutomationTool/security/advisories/new) 提交漏洞，不要在公開問題回報中附上可用憑據或真實使用者資料。報告應包含受影響版本、復現方式、影響和建議修復方向。
 
-本项目没有后台服务，也不会通过聊天、邮件或 Issue 索取你的 cURL、Cookie 或账号密码。
+本專案沒有後台服務，也不會透過聊天、郵件或問題回報 索取你的 cURL、Cookie 或帳號密碼。
